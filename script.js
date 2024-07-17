@@ -3,11 +3,13 @@ const buttons=document.querySelectorAll("button")
 let num1=-1;
 let operator;
 let num2=-2;
+const dotButton=document.querySelector("#dot")
 
 buttons.forEach(button=>{
     button.addEventListener("click",()=>{
         if(isNaN(button.id)==true){
           if(button.id=="+"||button.id=="-"||button.id=="*"||button.id=="/"){
+            dotButton.disabled=false;
             operator=button.id;
             num1=parseFloat(display.textContent);
             display.textContent="";
@@ -21,10 +23,14 @@ buttons.forEach(button=>{
                 display.textContent="Error";
             }
           }
+          else if(button.id=="back"){
+            display.textContent=display.textContent.slice(0,-1);
+          }
         }
         else{
             if(button.id==-1){
                 display.textContent="0";
+                dotButton.disabled=false;
             }
             else if(display.textContent==0){
                 return display.textContent=button.id
@@ -34,6 +40,11 @@ buttons.forEach(button=>{
             }
         }     
     })
+})
+
+dotButton.addEventListener("click",()=>{
+    display.textContent+="."
+    dotButton.disabled=true;
 }
 )
 function add(...num){
@@ -61,12 +72,16 @@ function multiply(...num){
 function divide(...num){
     let result=num[0];
     for(let i=1;i<num.length;i++){
-        if(num[i]===0){
-            throw new Error('Cannot divide by zero');
-        }
-        result/=num[i];
+        result/=num[i];    
     }
-    return result;
+    if(result==Infinity){
+        return "good try"
+    }
+    else{
+        return Number((result).toFixed(11));
+    }
+   
+    
 }
 function operate(num1,operator,num2){
     if(operator=="+"){
