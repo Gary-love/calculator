@@ -41,14 +41,19 @@ button{
 .display{
     display: flex;
     justify-content: flex-end;
-    border: solid black;
+    word-wrap: break-word;
     align-items: flex-end;
+    padding: 5px;
+    overflow:hidden;
     background-color: rgb(122, 122, 122);
     height: 100px;
     width: 410px;
     font-size: 60px;
 }
-#cancel{
+.cancel{
     background-color: red;
     color: white;
+}
+.zero{
+    width: 308px;
 }
