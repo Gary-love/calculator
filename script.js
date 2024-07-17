@@ -4,39 +4,6 @@ let num1=-1;
 let operator;
 let num2=-2;
 const dotButton=document.querySelector("#dot")
-const inputField = document.querySelector('body');
-inputField.addEventListener("keydown",(event)=>{
-    console.log(event.key)
-    if(isNaN(event.key)==true){
-        if(event.key=="+"||event.key=="-"||event.key=="*"||event.key=="/"){
-          dotButton.disabled=false;
-          operator=event.key;
-          num1=parseFloat(display.textContent);
-          display.textContent="";
-        }
-        else if(event.key=="=" || event.key=="Enter"){
-          if(operator!=null){
-              num2=parseFloat(display.textContent)
-              display.textContent=operate(num1,operator,num2)
-          }
-          else{
-              display.textContent="Error";
-          }
-        }
-        else if(event.key=="Backspace"){
-          display.textContent=display.textContent.slice(0,-1);
-        }
-      }
-      else{
-          if(display.textContent==0){
-              return display.textContent=event.key
-          }
-          else{
-              display.textContent+=event.key;
-          }
-      } 
-})
-
 buttons.forEach(button=>{
     button.addEventListener("click",()=>{
         if(isNaN(button.id)==true){
