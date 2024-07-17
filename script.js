@@ -1,6 +1,41 @@
-let num1;
+const display=document.querySelector(".display")
+const buttons=document.querySelectorAll("button")
+let num1=-1;
 let operator;
-let num2;
+let num2=-2;
+
+buttons.forEach(button=>{
+    button.addEventListener("click",()=>{
+        if(isNaN(button.id)==true){
+          if(button.id=="+"||button.id=="-"||button.id=="*"||button.id=="/"){
+            operator=button.id;
+            num1=parseFloat(display.textContent);
+            display.textContent="";
+          }
+          else if(button.id=="="){
+            if(operator!=null){
+                num2=parseFloat(display.textContent)
+                display.textContent=operate(num1,operator,num2)
+            }
+            else{
+                display.textContent="Error";
+            }
+          }
+        }
+        else{
+            if(button.id==-1){
+                display.textContent="0";
+            }
+            else if(display.textContent==0){
+                return display.textContent=button.id
+            }
+            else{
+                display.textContent+=button.id;
+            }
+        }     
+    })
+}
+)
 function add(...num){
     let sum=0;
     for(let i=0;i<num.length;i++){
@@ -50,4 +85,3 @@ function operate(num1,operator,num2){
         return "INVALID"
     }
 }
-console.log(operate(5,"+",12))//17
